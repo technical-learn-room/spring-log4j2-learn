@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="DEBUG">
-
     <Properties>
         <Property name="logPath">./logs</Property>
         <Property name="logPattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Property>
         <Property name="serviceName">application</Property>
     </Properties>
-
     <Appenders>
         <Console name="console" direct="true" target="SYSTEM_OUT">
             <PatternLayout pattern="${logPattern}"/>
@@ -17,16 +15,11 @@
                 fileName="${logPath}/${serviceName}.log"
                 filePattern="${logPath}/${serviceName}.%d{yyyy-MM-dd-HH-mm}.%i.log.gz"
                 ignoreExceptions="false">
-            <!--                fileName="${logPath}/${serviceName}.${date:yyyy-MM-dd-HH-mm}.%i.log"-->
             <PatternLayout pattern="${logPattern}"/>
             <Policies>
-<!--                <TimeBasedTriggeringPolicy filePattern="${logPath}/${serviceName}.%d{dd-MMM-hh}.log.gz" interval="1"/>-->
-<!--                <SizeBasedTriggeringPolicy size="10 KB"/>-->
-<!--                <OnStartupTriggeringPolicy />-->
                 <SizeBasedTriggeringPolicy size="5MB"/>
                 <TimeBasedTriggeringPolicy/>
             </Policies>
-<!--            <DefaultRolloverStrategy max="10"/>-->
         </RollingFile>
     </Appenders>
 
