@@ -89,9 +89,8 @@ configurations {
 
 ## log4j2.xml 설정을 파헤쳐보자
 
-### Configuration::status
-
-> 정확한 정보는 [이 글](https://stackoverflow.com/questions/21065854/what-does-status-mean-in-log4j2-configuration)을 참조해주세요!
+1. **Configuration::status**
+   > 정확한 정보는 [이 글](https://stackoverflow.com/questions/21065854/what-does-status-mean-in-log4j2-configuration)을 참조해주세요!
 
 ### Properties.Property
 `Properties.Property`는 설정 파일 안에서 사용할 변수를 정의하는 태그입니다.  
