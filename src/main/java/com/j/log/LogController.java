@@ -67,4 +67,9 @@ public class LogController {
         logger.fatal("fatal 로그 테스트2");
         logger.fatal("fatal 로그 테스트3");
     }
+
+    @PostMapping("/exception")
+    public void throwException() {
+        throw new RuntimeException("에러입니다요");
+    }
 }

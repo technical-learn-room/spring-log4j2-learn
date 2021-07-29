@@ -6,15 +6,14 @@
         <Property name="serviceName">application</Property>
     </Properties>
     <Appenders>
-        <Console name="console" direct="true" target="SYSTEM_OUT">
+        <Console name="console">
             <PatternLayout pattern="${logPattern}"/>
         </Console>
         <RollingFile
                 name="file"
                 append="true"
                 fileName="${logPath}/${serviceName}.log"
-                filePattern="${logPath}/${serviceName}.%d{yyyy-MM-dd-HH-mm}.%i.log.gz"
-                ignoreExceptions="false">
+                filePattern="${logPath}/${serviceName}.%d{yyyy-MM-dd-HH-mm}.%i.log.gz">
             <PatternLayout pattern="${logPattern}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="5MB"/>
@@ -22,7 +21,6 @@
             </Policies>
         </RollingFile>
     </Appenders>
-
     <Loggers>
         <Logger name="com.springframework" level="info" additivity="false">
             <AppenderRef ref="console"/>
