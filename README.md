@@ -59,7 +59,8 @@ logging:
 ```
 위 `log4j2.xml` 파일에서는 다음과 같은 로그 설정을 구성하고 있습니다.  
 - ./logs/application.log 파일을 만들어 로그를 저장합니다.
-- application.log 파일이 5MB가 되면 application.log 파일에 있는 로그를 ./logs/application.년도-월-일.파일숫자.log 파일로 옮기고 .gz 파일로 압축합니다.  
+- application.log 파일이 5MB가 되면 application.log 파일에 있는 로그를  
+  ./logs/application.년도-월-일.파일숫자.log 파일로 옮기고 .gz 파일로 압축합니다.  
 - com.springframework으로 시작하는 패키지에 존재하는 클래스들에서 작성된 로그는 info 수준 이상의 로그만 가져옵니다.
 - 마찬가지로 com.j로 시작하는 패키지에 존재하는 클래스들에서 작성된 로그도 info 수준 이상의 로그만 가져옵니다.  
 
