@@ -1,9 +1,12 @@
 # 스프링에서 Log4j2로 로그를 잘 찍어보자
 ![Log4j2 Logo](https://user-images.githubusercontent.com/48639421/127439750-9ec533c9-dd2e-4f6e-8817-69d2ec18ad52.png)  
 
+---
+
 ## Log4j2가 뭐야?
 `Log4j2`는 유명한 로깅 라이브러리로 스프링에서는 자체적으로 `Logback`이라는 로깅 라이브러리를 사용하고 있습니다.  
 
+---
 
 ## Log4j2를 사용해보자
 ### 의존성 추가
@@ -35,6 +38,8 @@ configurations {
     }
 }
 ```
+
+---
 
 ## log4j2.xml을 구성해보자
 ```xml
@@ -79,6 +84,8 @@ configurations {
   ./logs/application.년도-월-일.파일숫자.log 파일로 옮기고 .gz 파일로 압축합니다.  
 - com.springframework으로 시작하는 패키지에 존재하는 클래스들에서 작성된 로그는 info 수준 이상의 로그만 가져옵니다.
 - 마찬가지로 com.j로 시작하는 패키지에 존재하는 클래스들에서 작성된 로그도 info 수준 이상의 로그만 가져옵니다.  
+
+---
 
 ## log4j2.xml 설정을 파헤쳐보자
 
