@@ -124,10 +124,12 @@ configurations {
    본문에서 정의한 정책은 두 가지입니다.  
 
    6-1. **SizeBasedTriggeringPolicy**   
+   
         이 정책은 로그 파일의 크기에 따라 로그 파일을 나누는 기준을 정의합니다.  
         본문에서는 `size` 속성을 `5MB`로 정의하면서 로그 파일이 5MB가 되면 이를 따로 떼어내어  
         새로운 로그 파일로 만들게 됩니다.  
    6-2. **TimeBasedTriggeringPolicy**  
+   
         이 정책은 로그 파일이 시간에 따라 로그 파일을 나누는 기준을 정의합니다.  
         위의 `filePattern`에는 `${logPath}/${serviceName}.%d{yyyy-MM-dd}.%i.log.gz`이라고 정의되어 있는데  
         파일 이름에 날짜를 지정하여 날짜별로 로그 파일이 생기게 만들었습니다.  
