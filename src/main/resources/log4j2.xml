@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+
+    <Properties>
+        <Property name="logPath">./logs</Property>
+        <Property name="logPattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" direct="true" target="SYSTEM_OUT">
+            <PatternLayout pattern="${logPattern}"/>
+        </Console>
+        <RollingFile name="file" fileName="${logPath}/app.log" filePattern="${logPath}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.springframework" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="file"/>
+        </Logger>
+
+        <Logger name="com.j" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="file"/>
+        </Logger>
+    </Loggers>
+</Configuration>
