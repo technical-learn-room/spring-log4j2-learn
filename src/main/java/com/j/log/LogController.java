@@ -2,12 +2,20 @@ package com.j.log;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LogController {
     private static final Logger logger = LogManager.getLogger(LogController.class);
+
+    @PostMapping("/logs/{logCount}")
+    public void createLogs(@PathVariable("logCount") int logCount) {
+        for (int i = 0 ; i < logCount ; i++) {
+            logger.info("[" + i + "] 로그 테스트");
+        }
+    }
 
     @PostMapping("/logs")
     public void createLogs() {

@@ -4,18 +4,29 @@
     <Properties>
         <Property name="logPath">./logs</Property>
         <Property name="logPattern">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Property>
+        <Property name="serviceName">application</Property>
     </Properties>
 
     <Appenders>
         <Console name="console" direct="true" target="SYSTEM_OUT">
             <PatternLayout pattern="${logPattern}"/>
         </Console>
-        <RollingFile name="file" fileName="${logPath}/app.log" filePattern="${logPath}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingFile
+                name="file"
+                append="true"
+                fileName="${logPath}/${serviceName}.log"
+                filePattern="${logPath}/${serviceName}.%d{yyyy-MM-dd-HH-mm}.%i.log.gz"
+                ignoreExceptions="false">
+            <!--                fileName="${logPath}/${serviceName}.${date:yyyy-MM-dd-HH-mm}.%i.log"-->
             <PatternLayout pattern="${logPattern}"/>
             <Policies>
-                <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+<!--                <TimeBasedTriggeringPolicy filePattern="${logPath}/${serviceName}.%d{dd-MMM-hh}.log.gz" interval="1"/>-->
+<!--                <SizeBasedTriggeringPolicy size="10 KB"/>-->
+<!--                <OnStartupTriggeringPolicy />-->
+                <SizeBasedTriggeringPolicy size="5MB"/>
+                <TimeBasedTriggeringPolicy/>
             </Policies>
-            <DefaultRolloverStrategy max="10"/>
+<!--            <DefaultRolloverStrategy max="10"/>-->
         </RollingFile>
     </Appenders>
 
@@ -24,7 +35,6 @@
             <AppenderRef ref="console"/>
             <AppenderRef ref="file"/>
         </Logger>
-
         <Logger name="com.j" level="info" additivity="false">
             <AppenderRef ref="console"/>
             <AppenderRef ref="file"/>
