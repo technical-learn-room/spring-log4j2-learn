@@ -13,12 +13,18 @@
                 name="file"
                 append="true"
                 fileName="${logPath}/${serviceName}.log"
-                filePattern="${logPath}/${serviceName}.%d{yyyy-MM-dd}.%i.log.gz">
+                filePattern="${logPath}/${serviceName}.%d{yyyy-MM-dd}.%i.log">
             <PatternLayout pattern="${logPattern}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="5MB"/>
                 <TimeBasedTriggeringPolicy/>
             </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="${logPath}" maxDepth="1">
+                    <IfFileName glob="${serviceName}.*.log"/>
+                    <IfLastModified age="15d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
         </RollingFile>
     </Appenders>
     <Loggers>
