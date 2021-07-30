@@ -79,6 +79,12 @@ configurations {
                 <TimeBasedTriggeringPolicy/>
             </Policies>
         </RollingFile>
+        <DefaultRolloverStrategy>
+            <Delete basePath="${logPath}" maxDepth="1">
+                <IfFileName glob="${serviceName}.*.log"/>
+                <IfLastModified age="15d"/>
+            </Delete>
+        </DefaultRolloverStrategy>
     </Appenders>
     <Loggers>
         <Logger name="com.springframework" level="info" additivity="false">
@@ -98,6 +104,7 @@ configurations {
   ./logs/application.년도-월-일.파일숫자.log 파일로 옮기고 .gz 파일로 압축합니다.  
 - com.springframework으로 시작하는 패키지에 존재하는 클래스들에서 작성된 로그는 info 수준 이상의 로그만 가져옵니다.
 - 마찬가지로 com.j로 시작하는 패키지에 존재하는 클래스들에서 작성된 로그도 info 수준 이상의 로그만 가져옵니다.  
+- 15일이 지난 로그 파일은 자동으로 삭제합니다.  
 
 ---
 
@@ -159,6 +166,15 @@ configurations {
    물론 로그 파일의 크기가 일정량을 넘어가면 강제로 생성되기도 합니다.  
 
    이렇게 어떠한 정책에 의해 로그 파일을 계속해서 나누어 관리하는 기법을 `Rolling File` 기법이라고 합니다.  
+   
+   6-3. **DefaultRolloverStrategy.Delete**
+   
+       이 전략은 파일이 너무 많아서 메모리를 너무 많이 차지할 때를 방지하기 위하여 사용되는 전략입니다.  
+       여기서 여러 기준을 통해 로그 파일을 삭제하도록 만들 수 있으며,  
+       위에서는 `IfFileName` 태그를 통해 원하는 삭제 대상이 되는 로그 파일의 패턴을 정할 수 있고,  
+       `IfLastModified` 태그를 통해 얼마나 오랫동안 수정되지 않은 로그 파일을 삭제할 것인지를 정할 수 있습니다.  
+       또한 `Delete` 태그의 `maxDepth`를 통해 `basePath`로부터 어느 깊이에 있는 로그 파일을 삭제할 것인지 결정할 수 있습니다.  
+       여기서 `maxDepth`가 1인데 이는 `./logs` 디렉토리 바로 밑에 있는 로그 파일만을 삭제할 것이라는 것을 의미합니다.  
 
 7. **Loggers.Logger**
    `name` 속성을 통해 어떤 패키지에서 나오는 로그를 처리할 건지 설정할 수 있고,  
